@@ -1,0 +1,3 @@
+host: mailer@mail.com
+port: 9090
+resend: true

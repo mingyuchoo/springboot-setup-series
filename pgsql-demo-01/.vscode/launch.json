@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-Application<pgsql-demo-01>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.mingyuchoo.pgsql-demo.Application",
+      "projectName": "pgsql-demo-01",
+      "args": ""
+    }
+  ]
+}

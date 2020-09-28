@@ -1,0 +1,91 @@
+plugins
+{
+  id 'java'
+  id 'war'
+  id 'org.springframework.boot' version '2.2.6.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+  id "com.diffplug.gradle.spotless" version "3.30.0"
+  id 'org.sonarqube' version '2.7'
+  id 'jacoco' }
+
+group = 'com.mingyuchoo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations
+{
+  developmentOnly
+  runtimeClasspath
+  {
+    extendsFrom developmentOnly }
+  compileOnly
+  {
+    extendsFrom annotationProcessor } }
+
+repositories
+{
+  mavenCentral() }
+
+dependencies
+{
+  implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.data:spring-data-rest-hal-browser'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine' } }
+
+build
+{
+  dependsOn 'spotlessApply' }
+
+test
+{
+  useJUnitPlatform()
+  finalizedBy jacocoTestReport }
+
+sonarqube
+{
+  properties
+  {
+    property 'sonar.sourceEncoding', 'UTF-8' } }
+
+spotless
+{
+  java
+  {
+    importOrder 'java', 'javax', 'org', 'com', ''
+    removeUnusedImports()
+
+    googleJavaFormat("1.7").aosp()
+
+    target '**/*.java'
+
+    endWithNewline()
+    indentWithSpaces()
+    trimTrailingWhitespace() }
+  groovyGradle
+  {
+    target '**/*.gradle'
+    greclipse().configFile('greclipse.properties')
+    endWithNewline()
+    indentWithSpaces(2)
+    trimTrailingWhitespace() }
+  format 'misc',
+  {
+    target '**/*.md', '**/.gitignore'
+    endWithNewline()
+    indentWithSpaces(2)
+    trimTrailingWhitespace() } }
+
+
+jacoco
+{
+  toolVersion = "0.8.5" }
+
+jacocoTestReport
+{
+  dependsOn test }
