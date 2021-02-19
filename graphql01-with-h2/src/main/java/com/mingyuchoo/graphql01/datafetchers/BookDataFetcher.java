@@ -49,6 +49,7 @@ public class BookDataFetcher {
             return bookRepository.save(new BookEntity(title, pageCount));
         };
     }
+
     public DataFetcher<?> addBookWithAuthorIdAndBookStoreId() {
         return environment -> {
             String title = environment.getArgument("title");
@@ -57,12 +58,14 @@ public class BookDataFetcher {
             Long bookStoreId = Long.parseLong(environment.getArgument("bookStoreId"));
 
             Optional<AuthorEntity> optionalAuthorEntity = authorRepository.findById(authorId);
-            Optional<BookStoreEntity> optionalBookStoreEntity = bookStoreRepository.findById(bookStoreId);
+            Optional<BookStoreEntity> optionalBookStoreEntity =
+                    bookStoreRepository.findById(bookStoreId);
 
             if (optionalAuthorEntity.isPresent() && optionalBookStoreEntity.isPresent()) {
                 AuthorEntity authorEntity = optionalAuthorEntity.get();
                 BookStoreEntity bookStoreEntity = optionalBookStoreEntity.get();
-                return bookRepository.save(new BookEntity(title, pageCount, authorEntity, bookStoreEntity));
+                return bookRepository.save(
+                        new BookEntity(title, pageCount, authorEntity, bookStoreEntity));
             }
             throw new NotFoundException("Not found Author or BookStore to create Book!");
         };

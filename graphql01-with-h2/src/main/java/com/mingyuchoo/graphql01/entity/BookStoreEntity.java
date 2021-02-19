@@ -23,11 +23,9 @@ public class BookStoreEntity {
 
     private String storeLocation;
 
-    @CreationTimestamp
-    private OffsetDateTime createdAt;
+    @CreationTimestamp private OffsetDateTime createdAt;
 
-    @UpdateTimestamp
-    private OffsetDateTime updatedAt;
+    @UpdateTimestamp private OffsetDateTime updatedAt;
 
     @OneToMany
     @JoinColumn(name = "BOOK_STORE_ID", referencedColumnName = "ID")

@@ -94,7 +94,8 @@ public class GraphQLProvider {
                                 .dataFetcher("bookCount", bookDataFetcher.bookCount())
                                 .dataFetcher("books", bookDataFetcher.books())
                                 .dataFetcher("book", bookDataFetcher.book())
-                                .dataFetcher("bookStoreCount", bookStoreDataFetcher.bookStoreCount())
+                                .dataFetcher(
+                                        "bookStoreCount", bookStoreDataFetcher.bookStoreCount())
                                 .dataFetcher("bookStores", bookStoreDataFetcher.bookStores())
                                 .dataFetcher("bookStore", bookStoreDataFetcher.bookStore())
                                 .dataFetcher("cityCount", cityDataFetcher.cityCount())
@@ -106,7 +107,9 @@ public class GraphQLProvider {
                                 .dataFetcher("changeAuthor", authorDataFetcher.changeAuthor())
                                 .dataFetcher("removeAuthor", authorDataFetcher.removeAuthor())
                                 .dataFetcher("addBook", bookDataFetcher.addBook())
-                                .dataFetcher("addBookWithAuthorIdAndBookStoreId", bookDataFetcher.addBookWithAuthorIdAndBookStoreId())
+                                .dataFetcher(
+                                        "addBookWithAuthorIdAndBookStoreId",
+                                        bookDataFetcher.addBookWithAuthorIdAndBookStoreId())
                                 .dataFetcher("changeBook", bookDataFetcher.changeBook())
                                 .dataFetcher("removeBook", bookDataFetcher.removeBook())
                                 .dataFetcher("addBookStore", bookStoreDataFetcher.addBookStore())

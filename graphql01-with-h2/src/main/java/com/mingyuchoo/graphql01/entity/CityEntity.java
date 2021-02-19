@@ -1,5 +1,6 @@
 package com.mingyuchoo.graphql01.entity;
 
+import java.time.OffsetDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +11,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.OffsetDateTime;
 
 @ToString
 @Getter
@@ -28,11 +27,9 @@ public class CityEntity {
 
     private int population;
 
-    @CreationTimestamp
-    private OffsetDateTime createdAt;
+    @CreationTimestamp private OffsetDateTime createdAt;
 
-    @UpdateTimestamp
-    private OffsetDateTime updatedAt;
+    @UpdateTimestamp private OffsetDateTime updatedAt;
 
     public CityEntity() {}
 

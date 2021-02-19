@@ -3,7 +3,6 @@ package com.mingyuchoo.graphql01.entity;
 import java.time.OffsetDateTime;
 import java.util.List;
 import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,11 +23,9 @@ public class AuthorEntity {
 
     private String lastName;
 
-    @CreationTimestamp
-    private OffsetDateTime createdAt;
+    @CreationTimestamp private OffsetDateTime createdAt;
 
-    @UpdateTimestamp
-    private OffsetDateTime updatedAt;
+    @UpdateTimestamp private OffsetDateTime updatedAt;
 
     @OneToMany
     @JoinColumn(name = "AUTHOR_ID", referencedColumnName = "ID")

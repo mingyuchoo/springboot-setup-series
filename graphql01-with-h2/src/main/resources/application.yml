@@ -33,15 +33,11 @@ graphql:
     corsEnabled: true
     exception-handlers-enabled: true
     contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
-
-graphiql:
-  enabled: true
-  pageTitle: GraphiQL
-  mapping: /graphql
-  endpoint:
-    graphql: /graphql
-  static:
-    basePath: /
-  props:
-    variables:
-      editorTheme: "solarized light"
+  playground:
+    enabled: true
+    pageTitle: Playground
+    mapping: /graphql
+    endpoint:
+      graphql: /graphql
+    static:
+      basePath: /

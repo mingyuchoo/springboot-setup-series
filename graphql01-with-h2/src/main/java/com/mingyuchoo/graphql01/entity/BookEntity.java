@@ -1,13 +1,12 @@
 package com.mingyuchoo.graphql01.entity;
 
+import java.time.OffsetDateTime;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.OffsetDateTime;
 
 @ToString
 @Getter
@@ -23,11 +22,9 @@ public class BookEntity {
 
     private int pageCount;
 
-    @CreationTimestamp
-    private OffsetDateTime createdAt;
+    @CreationTimestamp private OffsetDateTime createdAt;
 
-    @UpdateTimestamp
-    private OffsetDateTime updatedAt;
+    @UpdateTimestamp private OffsetDateTime updatedAt;
 
     @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     @JoinColumn(name = "AUTHOR_ID", referencedColumnName = "ID")
@@ -44,6 +41,7 @@ public class BookEntity {
         this.title = title;
         this.pageCount = pageCount;
     }
+
     public BookEntity(String title, int pageCount, AuthorEntity author, BookStoreEntity bookStore) {
         this.title = title;
         this.pageCount = pageCount;
