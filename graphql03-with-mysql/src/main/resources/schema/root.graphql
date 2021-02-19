@@ -1,0 +1,43 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  # Author
+  authorCount: Int!
+  authors: [Author]
+  author(id: ID): Author
+  # Book
+  bookCount: Int!
+  books: [Book]
+  book(id: ID): Book
+  # BookStore
+  bookStoreCount: Int!
+  bookStores: [BookStore]
+  bookStore(id: ID): BookStore
+  # City
+  cityCount: Int!
+  cities: [City]
+  city(id: ID): City
+}
+
+type Mutation {
+  # Author
+  addAuthor(firstName: String!, lastName: String!): Author!
+  changeAuthor(id: ID!, firstName: String!, lastName: String!): Author!
+  removeAuthor(id: ID!): Boolean
+  # Book
+  addBook(title: String!, pageCount: Int): Book!
+  addBookWithAuthorIdAndBookStoreId(title: String!, pageCount: Int, authorId: ID!, bookStoreId: ID!): Book!
+  changeBook(id: ID!, title: String!, pageCount: Int): Book!
+  removeBook(id: ID!): Boolean
+  # BookStore
+  addBookStore(storeName: String!, storeLocation: String): BookStore!
+  updateBooStore(id: ID!, storeName: String!, storeLocation: String): BookStore!
+  removeBookStore(id: ID!): Boolean
+  # City
+  addCity(name: String!, population: Int): City!
+  changeCity(id: ID!, name: String!, population: Int): City!
+  removeCity(id: ID!): Boolean
+}
