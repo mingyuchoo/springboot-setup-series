@@ -21,3 +21,9 @@ docker-compose --file docker-compose.yml up --build --detach
 ```
 http://localhost:4000/graphql
 ```
+
+## Connect to Voyager
+
+```
+http://localhost:4000/voyager
+```

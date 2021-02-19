@@ -24,3 +24,9 @@ check below information
 - password:
 
 add seed data using /src/main/resources/seed.sql
+
+## Connect to Voyager
+
+```
+http://localhost:4000/voyager
+```
