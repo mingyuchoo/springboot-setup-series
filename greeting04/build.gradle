@@ -17,52 +17,38 @@ repositories {
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
-  // Lombok
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
-  // for Test
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
-  {
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
   testImplementation "org.springframework.boot:spring-boot-starter-webflux"
 }
 
-
-sonarqube
-{
-  properties
-  {
+sonarqube {
+  properties {
     property 'sonar.sourceEncoding', 'UTF-8'
   }
 }
 
-spotless
-{
-  java
-  {
+spotless {
+  java {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
-
-
     googleJavaFormat("1.7").aosp()
-
     target '**/*.java'
-
     endWithNewline()
     indentWithSpaces(4)
     trimTrailingWhitespace()
   }
-  groovyGradle
-  {
+  groovyGradle {
     target '**/*.gradle'
     greclipse().configFile('greclipse.properties')
     endWithNewline()
     indentWithSpaces(2)
     trimTrailingWhitespace()
   }
-  format 'misc',
-  {
+  format 'misc', {
     target '**/*.md', '**/.gitignore'
     endWithNewline()
     indentWithSpaces(2)
@@ -70,23 +56,19 @@ spotless
   }
 }
 
-build
-{
+build {
   dependsOn 'spotlessApply'
 }
 
-test
-{
+test {
   useJUnitPlatform()
   finalizedBy jacocoTestReport
 }
 
-jacoco
-{
+jacoco {
   toolVersion = "0.8.6"
 }
 
-jacocoTestReport
-{
+jacocoTestReport {
   dependsOn test
 }

@@ -38,8 +38,6 @@ dependencies {
   }
 }
 
-
-
 test {
   dependsOn 'spotlessApply'
   useJUnitPlatform()
@@ -56,11 +54,8 @@ spotless {
   java {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
-
     googleJavaFormat("1.7").aosp()
-
     target '**/*.java'
-
     endWithNewline()
     indentWithSpaces()
     trimTrailingWhitespace()
@@ -79,7 +74,6 @@ spotless {
     trimTrailingWhitespace()
   }
 }
-
 
 jacoco {
   toolVersion = "0.8.6"

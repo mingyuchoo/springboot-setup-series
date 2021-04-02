@@ -57,8 +57,6 @@ spotless {
   }
 }
 
-
-
 test {
   dependsOn 'spotlessApply'
   useJUnitPlatform()

@@ -54,11 +54,8 @@ spotless {
   java {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
-
     googleJavaFormat("1.7").aosp()
-
     target '**/*.java'
-
     endWithNewline()
     indentWithSpaces()
     trimTrailingWhitespace()
@@ -77,8 +74,6 @@ spotless {
     trimTrailingWhitespace()
   }
 }
-
-
 
 test {
   dependsOn 'spotlessApply'
