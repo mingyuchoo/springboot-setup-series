@@ -58,11 +58,8 @@ spotless {
   java {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
-
     googleJavaFormat("1.7").aosp()
-
     target '**/*.java'
-
     endWithNewline()
     indentWithSpaces()
     trimTrailingWhitespace()
@@ -82,17 +79,14 @@ spotless {
   }
 }
 
-build {
-  dependsOn 'spotlessApply'
-}
-
 test {
+  dependsOn 'spotlessApply'
   useJUnitPlatform()
   finalizedBy jacocoTestReport
 }
 
 jacoco {
-  toolVersion = "0.8.5"
+  toolVersion = "0.8.6"
 }
 
 jacocoTestReport {

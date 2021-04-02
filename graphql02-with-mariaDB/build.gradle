@@ -34,8 +34,7 @@ dependencies {
   annotationProcessor 'org.projectlombok:lombok'
   // Testing
   developmentOnly 'org.springframework.boot:spring-boot-devtools'
-  testImplementation('org.springframework.boot:spring-boot-starter-test:7.0.1')
-  {
+  testImplementation('org.springframework.boot:spring-boot-starter-test:7.0.1') {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
   // Database
@@ -46,40 +45,30 @@ dependencies {
   //  runtimeOnly 'org.postgresql:postgresql' // PostgreSQL
 }
 
-sonarqube
-{
-  properties
-  {
+sonarqube {
+  properties {
     property 'sonar.sourceEncoding', 'UTF-8'
   }
 }
 
-spotless
-{
-  java
-  {
+spotless {
+  java {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
-
-
     googleJavaFormat("1.7").aosp()
-
     target '**/*.java'
-
     endWithNewline()
     indentWithSpaces(4)
     trimTrailingWhitespace()
   }
-  groovyGradle
-  {
+  groovyGradle {
     target '**/*.gradle'
     greclipse().configFile('greclipse.properties')
     endWithNewline()
     indentWithSpaces(2)
     trimTrailingWhitespace()
   }
-  format 'misc',
-  {
+  format 'misc', {
     target '**/*.md', '**/.gitignore'
     endWithNewline()
     indentWithSpaces(2)
@@ -87,20 +76,16 @@ spotless
   }
 }
 
-jacoco
-{
-  toolVersion = "0.8.5"
+jacoco {
+  toolVersion = "0.8.6"
 }
-test
-{
+test {
   useJUnitPlatform()
   finalizedBy jacocoTestReport
 }
-jacocoTestReport
-{
+jacocoTestReport {
   dependsOn test
 }
-build
-{
+build {
   dependsOn 'spotlessApply'
 }

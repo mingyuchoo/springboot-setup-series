@@ -38,11 +38,10 @@ dependencies {
   }
 }
 
-build {
-  dependsOn 'spotlessApply'
-}
+
 
 test {
+  dependsOn 'spotlessApply'
   useJUnitPlatform()
   finalizedBy jacocoTestReport
 }
@@ -83,7 +82,7 @@ spotless {
 
 
 jacoco {
-  toolVersion = "0.8.5"
+  toolVersion = "0.8.6"
 }
 
 jacocoTestReport {
