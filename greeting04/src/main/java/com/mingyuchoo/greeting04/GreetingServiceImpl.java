@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GreetingServiceImpl implements GreetingService {
 
-    @Autowired
-    GreetingRepository greetingRepository;
+    @Autowired GreetingRepository greetingRepository;
 
     @Override
     public String get() {

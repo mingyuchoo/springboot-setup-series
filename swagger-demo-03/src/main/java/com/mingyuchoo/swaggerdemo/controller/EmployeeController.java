@@ -18,12 +18,10 @@ public class EmployeeController {
 
     /**
      * getEmployees
+     *
      * @return
      */
-    @ApiOperation(
-            value = "임직원 목록 조회",
-            notes = "저장된 임직원에 대한 목록을 조회한다.",
-            response = List.class)
+    @ApiOperation(value = "임직원 목록 조회", notes = "저장된 임직원에 대한 목록을 조회한다.", response = List.class)
     @ApiResponses(
             value = {
                 @ApiResponse(code = 200, message = "성공적으로 목록을 조회함"),
@@ -40,6 +38,7 @@ public class EmployeeController {
 
     /**
      * getOneEmployee
+     *
      * @param id
      * @return
      */
@@ -65,13 +64,11 @@ public class EmployeeController {
 
     /**
      * postOneEmployee
+     *
      * @param employee
      * @return
      */
-    @ApiOperation(
-            value = "신규 임직원 등록",
-            notes = "신규 임직원 정보를 등록한다.",
-            response = Employee.class)
+    @ApiOperation(value = "신규 임직원 등록", notes = "신규 임직원 정보를 등록한다.", response = Employee.class)
     @ApiResponses(
             value = {
                 @ApiResponse(code = 201, message = "새로운 임직원 정보를 성공적으로 등록함"),
@@ -92,6 +89,7 @@ public class EmployeeController {
 
     /**
      * putOneEmployee
+     *
      * @param id
      * @param employee
      * @return
@@ -125,6 +123,7 @@ public class EmployeeController {
 
     /**
      * deleteOneEmployee
+     *
      * @param id
      * @return
      */

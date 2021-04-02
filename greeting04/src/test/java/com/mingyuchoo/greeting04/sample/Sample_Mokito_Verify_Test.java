@@ -1,11 +1,9 @@
 package com.mingyuchoo.greeting04.sample;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.mockito.Mockito.*;
 
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class Sample_Mokito_Verify_Test {
 
@@ -22,5 +20,4 @@ public class Sample_Mokito_Verify_Test {
         verify(mockList).add("one");
         verify(mockList).clear();
     }
-
 }

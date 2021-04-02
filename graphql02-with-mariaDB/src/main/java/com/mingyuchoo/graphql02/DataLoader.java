@@ -13,8 +13,6 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.awt.print.Book;
-
 @Component
 public class DataLoader implements ApplicationRunner {
     private AuthorRepository authorRepository;
@@ -67,15 +65,24 @@ public class DataLoader implements ApplicationRunner {
 
         // Book
         this.bookRepository.save(new BookEntity("헤리포터", 472, authorHarry, bookStoreAmazon));
-        this.bookRepository.save(new BookEntity("Titus Andronicus", 100, authorShakespeare, bookStoreAmazon));
-        this.bookRepository.save(new BookEntity("Romeo and Juliet", 100, authorShakespeare, bookStoreAmazon));
-        this.bookRepository.save(new BookEntity("Julius Caesar", 100, authorShakespeare, bookStoreAmazon));
+        this.bookRepository.save(
+                new BookEntity("Titus Andronicus", 100, authorShakespeare, bookStoreAmazon));
+        this.bookRepository.save(
+                new BookEntity("Romeo and Juliet", 100, authorShakespeare, bookStoreAmazon));
+        this.bookRepository.save(
+                new BookEntity("Julius Caesar", 100, authorShakespeare, bookStoreAmazon));
         this.bookRepository.save(new BookEntity("Hamlet", 100, authorShakespeare, bookStoreAmazon));
-        this.bookRepository.save(new BookEntity("Othello", 100, authorShakespeare, bookStoreAmazon));
-        this.bookRepository.save(new BookEntity("Timon of Athens", 100, authorShakespeare, bookStoreAmazon));
-        this.bookRepository.save(new BookEntity("Macbeth", 100, authorShakespeare, bookStoreAmazon));
-        this.bookRepository.save(new BookEntity("King Lear", 100, authorShakespeare, bookStoreAmazon));
-        this.bookRepository.save(new BookEntity("Antony and Cleopatra", 100, authorShakespeare, bookStoreAmazon));
-        this.bookRepository.save(new BookEntity("Coriolanus", 100, authorShakespeare, bookStoreAmazon));
+        this.bookRepository.save(
+                new BookEntity("Othello", 100, authorShakespeare, bookStoreAmazon));
+        this.bookRepository.save(
+                new BookEntity("Timon of Athens", 100, authorShakespeare, bookStoreAmazon));
+        this.bookRepository.save(
+                new BookEntity("Macbeth", 100, authorShakespeare, bookStoreAmazon));
+        this.bookRepository.save(
+                new BookEntity("King Lear", 100, authorShakespeare, bookStoreAmazon));
+        this.bookRepository.save(
+                new BookEntity("Antony and Cleopatra", 100, authorShakespeare, bookStoreAmazon));
+        this.bookRepository.save(
+                new BookEntity("Coriolanus", 100, authorShakespeare, bookStoreAmazon));
     }
 }

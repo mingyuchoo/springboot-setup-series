@@ -1,62 +1,60 @@
-plugins
-{
+plugins {
   id 'java'
   id 'war'
   id 'org.springframework.boot' version '2.2.6.RELEASE'
-  id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-  id "com.diffplug.gradle.spotless" version "3.30.0"
-  id 'org.sonarqube' version '2.7'
-  id 'jacoco' }
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'com.diffplug.spotless' version '5.11.0'
+  id 'org.sonarqube' version '3.1.1'
+  id 'jacoco'
+}
 
 group = 'com.mingyuchoo'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-configurations
-{
+configurations {
   developmentOnly
-  runtimeClasspath
-  {
-    extendsFrom developmentOnly }
-  compileOnly
-  {
-    extendsFrom annotationProcessor } }
+  runtimeClasspath {
+    extendsFrom developmentOnly
+  }
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
-repositories
-{
-  mavenCentral() }
+repositories {
+  mavenCentral()
+}
 
-dependencies
-{
+dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-hateoas'
   implementation 'org.springframework.boot:spring-boot-starter-web'
   implementation 'org.springframework.data:spring-data-rest-hal-browser'
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
   providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
-  {
-    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine' } }
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+}
 
-build
-{
-  dependsOn 'spotlessApply' }
+build {
+  dependsOn 'spotlessApply'
+}
 
-test
-{
+test {
   useJUnitPlatform()
-  finalizedBy jacocoTestReport }
+  finalizedBy jacocoTestReport
+}
 
-sonarqube
-{
-  properties
-  {
-    property 'sonar.sourceEncoding', 'UTF-8' } }
+sonarqube {
+  properties {
+    property 'sonar.sourceEncoding', 'UTF-8'
+  }
+}
 
-spotless
-{
-  java
-  {
+spotless {
+  java {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
 
@@ -66,26 +64,28 @@ spotless
 
     endWithNewline()
     indentWithSpaces()
-    trimTrailingWhitespace() }
-  groovyGradle
-  {
+    trimTrailingWhitespace()
+  }
+  groovyGradle {
     target '**/*.gradle'
     greclipse().configFile('greclipse.properties')
     endWithNewline()
     indentWithSpaces(2)
-    trimTrailingWhitespace() }
-  format 'misc',
-  {
+    trimTrailingWhitespace()
+  }
+  format 'misc', {
     target '**/*.md', '**/.gitignore'
     endWithNewline()
     indentWithSpaces(2)
-    trimTrailingWhitespace() } }
+    trimTrailingWhitespace()
+  }
+}
 
 
-jacoco
-{
-  toolVersion = "0.8.5" }
+jacoco {
+  toolVersion = "0.8.5"
+}
 
-jacocoTestReport
-{
-  dependsOn test }
+jacocoTestReport {
+  dependsOn test
+}

@@ -1,10 +1,9 @@
 package com.mingyuchoo.greeting04.sample;
 
-import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
 
 import java.util.LinkedList;
-
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.Test;
 
 public class Sample_Mokito_Stub_Test {
 

@@ -19,8 +19,7 @@ public class BookDataFetcher {
     @Autowired private AuthorRepository authorRepository;
     @Autowired private BookStoreRepository bookStoreRepository;
 
-    public BookDataFetcher() {
-    }
+    public BookDataFetcher() {}
 
     // Count
     public DataFetcher<?> bookCount() {
