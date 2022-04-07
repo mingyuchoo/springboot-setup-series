@@ -1,7 +1,13 @@
-# Swagger Demo 02
+# swagger-demo-03
 
-## Tech stack
+## How to run PostgreSQL
 
- - Spring boot
- - JUnit 5
- - Swagger
+```bash
+docker-compose --file docker-compose.yaml up --build --detach
+```
+
+## How to run
+
+```bash
+./gradlew bootRun
+```
