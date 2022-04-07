@@ -1,6 +1,6 @@
 plugins {
   id 'java'
-  id 'org.springframework.boot' version '2.2.6.RELEASE'
+  id 'org.springframework.boot' version '2.6.6'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'com.diffplug.spotless' version '5.11.0'
   id 'org.sonarqube' version '3.1.1'
@@ -9,7 +9,7 @@ plugins {
 
 group = 'com.mingyuchoo'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 configurations {
   developmentOnly
@@ -37,7 +37,7 @@ dependencies {
   testImplementation('org.springframework.boot:spring-boot-starter-test') {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
-  testImplementation "org.springframework.boot:spring-boot-starter-webflux"
+  testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
 sonarqube {
@@ -50,7 +50,7 @@ spotless {
   java {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
-    googleJavaFormat("1.7").aosp()
+    googleJavaFormat('1.7').aosp()
     target '**/*.java'
     endWithNewline()
     indentWithSpaces()
@@ -78,7 +78,7 @@ test {
 }
 
 jacoco {
-  toolVersion = "0.8.6"
+  toolVersion = '0.8.6'
 }
 
 jacocoTestReport {

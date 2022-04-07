@@ -10,7 +10,7 @@ plugins {
 
 group = 'com.mingyuchoo'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 repositories {
   mavenCentral()
@@ -24,7 +24,7 @@ dependencies {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
   testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-  testImplementation "org.springframework.boot:spring-boot-starter-webflux"
+  testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
 sonarqube {
@@ -37,7 +37,7 @@ spotless {
   java {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
-    googleJavaFormat("1.7").aosp()
+    googleJavaFormat('1.7').aosp()
     target '**/*.java'
     endWithNewline()
     indentWithSpaces(4)
@@ -59,7 +59,7 @@ spotless {
 }
 
 jacoco {
-  toolVersion = "0.8.6"
+  toolVersion = '0.8.6'
 }
 test {
   useJUnitPlatform()

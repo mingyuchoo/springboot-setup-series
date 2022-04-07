@@ -1,28 +1,24 @@
 plugins {
-  id "java"
-  id "org.springframework.boot" version "2.4.4"
-  id "io.spring.dependency-management" version "1.0.11.RELEASE"
+  id 'java'
+  id 'org.springframework.boot' version '2.6.6'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'com.diffplug.spotless' version '5.11.0'
   id 'org.sonarqube' version '3.1.1'
   id 'jacoco'
 }
 
-group = "com.mingyuchoo"
-version = "0.0.1-SNAPSHOT"
-sourceCompatibility = '1.8'
+group = 'com.mingyuchoo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
   mavenCentral()
 }
 
 dependencies {
-  implementation "org.springframework.boot:spring-boot-starter-web"
+  implementation 'org.springframework.boot:spring-boot-starter-web'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
-  testImplementation "org.springframework.boot:spring-boot-starter-webflux"
-}
-
-bootJar {
-  mainClassName = 'hello.Application'
+  testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
 sonarqube {
@@ -36,7 +32,7 @@ spotless {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
 
-    googleJavaFormat("1.7").aosp()
+    googleJavaFormat('1.7').aosp()
 
     target '**/*.java'
 
@@ -66,7 +62,7 @@ test {
 }
 
 jacoco {
-  toolVersion = "0.8.6"
+  toolVersion = '0.8.6'
 }
 
 jacocoTestReport {
