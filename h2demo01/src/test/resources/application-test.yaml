@@ -20,3 +20,6 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: create
+
+first-name: Tom
+last-name: Hanks

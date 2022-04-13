@@ -1,10 +1,11 @@
 plugins {
-  id 'java'
   id 'org.springframework.boot' version '2.6.6'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'org.asciidoctor.convert' version '1.5.8'
   id 'com.diffplug.spotless' version '6.4.2'
   id 'org.sonarqube' version '3.3'
   id 'jacoco'
+  id 'java'
 }
 
 group = 'com.mingyuchoo'
@@ -21,6 +22,10 @@ repositories {
   mavenCentral()
 }
 
+ext {
+  set('snippetsDir', file("build/generated-snippets"))
+}
+
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
   implementation 'org.springframework.boot:spring-boot-starter-data-rest'
@@ -30,12 +35,32 @@ dependencies {
   runtimeOnly 'com.h2database:h2'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+  testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+}
+
+test {
+  dependsOn 'spotlessApply'
+  useJUnitPlatform()
+  finalizedBy jacocoTestReport
+}
+
+asciidoctor {
+  inputs.dir snippetsDir
+  dependsOn test
 }
 
 sonarqube {
   properties {
     property 'sonar.sourceEncoding', 'UTF-8'
   }
+}
+
+jacoco {
+  toolVersion = '0.8.8'
+}
+
+jacocoTestReport {
+  dependsOn test
 }
 
 spotless {
@@ -61,18 +86,4 @@ spotless {
     indentWithSpaces(2)
     trimTrailingWhitespace()
   }
-}
-
-test {
-  dependsOn 'spotlessApply'
-  useJUnitPlatform()
-  finalizedBy jacocoTestReport
-}
-
-jacoco {
-  toolVersion = '0.8.8'
-}
-
-jacocoTestReport {
-  dependsOn test
 }
