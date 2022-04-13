@@ -9,7 +9,7 @@ plugins {
 
 group = 'com.mingyuchoo'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 configurations {
   developmentOnly
@@ -47,7 +47,7 @@ spotless {
   java {
     importOrder 'java', 'javax', 'org', 'com', ''
     removeUnusedImports()
-    googleJavaFormat('1.7').aosp()
+    googleJavaFormat('1.12.0').aosp()
     target '**/*.java'
     endWithNewline()
     indentWithSpaces()
