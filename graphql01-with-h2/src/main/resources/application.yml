@@ -1,6 +1,9 @@
 ---
 server:
   port: 4000
+  servlet:
+    encoding:
+      force-response: true
 
 spring:
   devtools:
