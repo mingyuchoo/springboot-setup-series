@@ -1,0 +1,68 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'jacoco'
+	id 'com.adarshr.test-logger' version '3.2.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+jacoco {
+	toolVersion = '0.8.8'
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = false
+		csv.required = false
+		html.outputLocation = layout.buildDirectory.dir('reports/tests/jacoco')
+	}
+	dependsOn test
+}
+
+testlogger {
+	theme 'plain'
+	showExceptions true
+	showStackTraces true
+	showFullStackTraces false
+	showCauses true
+	slowThreshold 2000
+	showSummary true
+	showSimpleNames false
+	showPassed true
+	showSkipped true
+	showFailed true
+	showOnlySlow false
+	showStandardStreams false
+	showPassedStandardStreams true
+	showSkippedStandardStreams true
+	showFailedStandardStreams true
+	logLevel 'lifecycle'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+	testlogger
+	jacoco {
+		enabled = true
+		destinationFile = layout.buildDirectory.file('test-results/jacoco/jacocoTest.exec').get().asFile
+	}
+	finalizedBy jacocoTestReport
+}
+
