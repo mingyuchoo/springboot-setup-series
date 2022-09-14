@@ -1,0 +1,26 @@
+---
+server:
+  port: 8000
+  servlet:
+    encoding:
+      force-response: true
+
+spring:
+  output:
+    ansi.enabled: always
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: vmsdb
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      dll-auto: update
+
+mingyuchoo:
+  app:
+    jwtSecret: mySecretKey
+    jwtExpirationMs: 86400000
