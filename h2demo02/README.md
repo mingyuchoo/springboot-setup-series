@@ -2,7 +2,7 @@
 
 ## How to run
 
-```bash
+```sh
 ./gradlew bootRun
 ```
 
