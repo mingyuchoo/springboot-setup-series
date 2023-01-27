@@ -2,12 +2,12 @@
 
 ## How to run PostgreSQL
 
-```sh
+```bash
 docker-compose --file docker-compose.yaml up --build --detach
 ```
 
 ## How to run
 
-```sh
+```bash
 ./gradlew bootRun
 ```
