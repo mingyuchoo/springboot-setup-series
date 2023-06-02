@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+
+logging:
+  level:
+    com.example.demo: debug
+
+mybatis:
+  type-aliases-package: com.example.demo.user.repository
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: test
+    password: test
+    minimum-idle: 10
+    maximum-pool-size: 10
+    validation-query: SELECT 1 FROM DUAL
+  flyway:
+    locations: classpath:flyway/migration
+    defaultSchema: test
+    enabled: true
+    baseline-on-migration: true
