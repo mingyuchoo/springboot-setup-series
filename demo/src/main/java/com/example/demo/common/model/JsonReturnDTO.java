@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 @Builder
-public class CommonReturnDTO<T> {
+public class JsonReturnDTO<T> {
     private String successOrNot;
     private String statusCode;
     private T data;

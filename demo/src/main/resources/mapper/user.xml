@@ -5,13 +5,53 @@
 
 <mapper namespace="com.example.demo.user.repository.UserRepository">
 
-    <select id="selectName" parameterType="UserVO" resultType="UserVO">
-        <![CDATA[
-        SELECT id
-             , name
+    <select id="count" parameterType="com.example.demo.user.model.UserModel" resultType="Integer">
+         SELECT COUNT(1) AS count
+           FROM user
+          WHERE 1 = 1
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="name != null">
+            AND name = #{name}
+        </if>
+    </select>
+
+    <select id="selectAll" parameterType="com.example.demo.user.model.UserModel" resultType="com.example.demo.user.model.UserModel">
+         SELECT id   AS id
+              , name AS name
+           FROM user
+          WHERE 1 = 1
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="name != null">
+            AND name = #{name}
+        </if>
+    </select>
+
+    <insert id="insertOne" parameterType="com.example.demo.user.model.UserModel">
+        INSERT INTO user (name)
+        VALUES (#{name})
+    </insert>
+
+    <select id="selectOne" parameterType="Integer" resultType="com.example.demo.user.model.UserModel">
+        SELECT id    AS id
+             , name  AS name
           FROM user
          WHERE id = #{id}
-        ]]>
     </select>
+
+    <update id="updateOne" parameterType="com.example.demo.user.model.UserModel">
+        UPDATE user
+           SET name = #{name}
+         WHERE id = #{id}
+    </update>
+
+    <delete id="deleteOne" parameterType="Integer">
+        DELETE
+          FROM user
+         WHERE id = #{id}
+    </delete>
 
 </mapper>
