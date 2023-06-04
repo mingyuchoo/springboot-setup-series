@@ -28,7 +28,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer insertItem(User user) throws Exception {
-        return userMapper.insertItem(user);
+        if(userMapper.insertItem(user) != 0)
+            return user.getId();
+        else
+            return 0;
     }
 
     @Override

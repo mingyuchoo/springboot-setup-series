@@ -40,6 +40,9 @@
     <insert id="insertItem" parameterType="com.example.demo.user.entity.User">
         INSERT INTO user (name)
         VALUES (#{name})
+        <selectKey keyProperty="id" resultType="Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
 
