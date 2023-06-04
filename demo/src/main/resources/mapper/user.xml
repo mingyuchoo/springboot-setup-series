@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.user.repository.UserRepository">
+<mapper namespace="com.example.demo.user.repository.UserMapper">
 
-    <select id="count" parameterType="com.example.demo.user.model.UserModel" resultType="Integer">
+    <select id="selectCount" parameterType="com.example.demo.user.entity.User" resultType="Integer">
          SELECT COUNT(1) AS count
            FROM user
           WHERE 1 = 1
@@ -17,7 +17,7 @@
         </if>
     </select>
 
-    <select id="selectAll" parameterType="com.example.demo.user.model.UserModel" resultType="com.example.demo.user.model.UserModel">
+    <select id="selectList" parameterType="com.example.demo.user.entity.User" resultType="com.example.demo.user.entity.User">
          SELECT id   AS id
               , name AS name
            FROM user
@@ -30,25 +30,26 @@
         </if>
     </select>
 
-    <insert id="insertOne" parameterType="com.example.demo.user.model.UserModel">
+    <select id="selectItem" parameterType="Integer" resultType="com.example.demo.user.entity.User">
+        SELECT id    AS id
+        , name  AS name
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertItem" parameterType="com.example.demo.user.entity.User">
         INSERT INTO user (name)
         VALUES (#{name})
     </insert>
 
-    <select id="selectOne" parameterType="Integer" resultType="com.example.demo.user.model.UserModel">
-        SELECT id    AS id
-             , name  AS name
-          FROM user
-         WHERE id = #{id}
-    </select>
 
-    <update id="updateOne" parameterType="com.example.demo.user.model.UserModel">
+    <update id="updateItem" parameterType="com.example.demo.user.entity.User">
         UPDATE user
            SET name = #{name}
          WHERE id = #{id}
     </update>
 
-    <delete id="deleteOne" parameterType="Integer">
+    <delete id="deleteItem" parameterType="Integer">
         DELETE
           FROM user
          WHERE id = #{id}

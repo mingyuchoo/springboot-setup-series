@@ -1,45 +1,51 @@
 package com.example.demo.user.service;
 
 import com.example.demo.common.model.PaginationDTO;
-import com.example.demo.user.model.UserModel;
+import com.example.demo.user.entity.User;
+import com.example.demo.user.repository.UserMapper;
 import com.example.demo.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final UserMapper userMapper;
     private final UserRepository userRepository;
+
     @Override
-    public PaginationDTO<UserModel> selectAll(UserModel userModel) throws Exception {
-        return PaginationDTO.<UserModel>builder()
-                .count(userRepository.count(userModel))
-                .list(userRepository.selectAll(userModel))
+    public Iterable<User> findAll() throws Exception {
+        return userRepository.findAll();
+    }
+    @Override
+    public PaginationDTO<User> selectList(User user) throws Exception {
+        return PaginationDTO.<User>builder()
+                .count(userMapper.selectCount(user))
+                .list(userMapper.selectList(user))
                 .build();
     }
 
     @Override
-    public Integer insertOne(UserModel userModel) throws Exception {
-        return userRepository.insertOne(userModel);
+    public Integer insertItem(User user) throws Exception {
+        return userMapper.insertItem(user);
     }
 
     @Override
-    public UserModel selectOne(Integer id) throws Exception {
-        return userRepository.selectOne(id);
+    public User selectItem(Integer id) throws Exception {
+        return userMapper.selectItem(id);
     }
 
-    public Integer updateOne(Integer id, UserModel userModel) throws Exception {
-        UserModel updatedUserModel =
-            UserModel.builder()
+    public Integer updateItem(Integer id, User user) throws Exception {
+        User updatedUser =
+            User.builder()
                     .id(id)
-                    .name(userModel.getName())
+                    .name(user.getName())
                     .build();
-        return userRepository.updateOne(updatedUserModel);
+        return userMapper.updateItem(updatedUser);
     }
 
-    public Integer deleteOne(Integer id) throws Exception {
-        return userRepository.deleteOne(id);
+    public Integer deleteItem(Integer id) throws Exception {
+        return userMapper.deleteItem(id);
     }
 }

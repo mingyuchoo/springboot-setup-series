@@ -2,14 +2,12 @@ package com.example.demo.user.controller;
 
 import com.example.demo.common.model.JsonReturnDTO;
 import com.example.demo.common.model.PaginationDTO;
-import com.example.demo.user.model.UserModel;
+import com.example.demo.user.entity.User;
 import com.example.demo.user.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,76 +19,71 @@ public class UserController {
 
     private final UserService userService;
 
+    @GetMapping(path="/user/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
+        public  @ResponseBody Iterable<User> findAll() throws Exception {
+
+        return userService.findAll();
+    }
+
     @GetMapping(path="/user", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonReturnDTO<PaginationDTO<UserModel>>> selectAll(
-            @Valid @ModelAttribute final UserModel userModel
+    public @ResponseBody JsonReturnDTO<PaginationDTO<User>> selectList(
+            @Valid @ModelAttribute final User user
     ) throws Exception {
 
-        return new ResponseEntity<>(JsonReturnDTO
-                .<PaginationDTO<UserModel>>builder()
+        return JsonReturnDTO.<PaginationDTO<User>>builder()
                 .successOrNot("Y")
                 .statusCode("OK")
-                .data(userService.selectAll(userModel))
-                .build(),
-                HttpStatus.OK
-        );
+                .data(userService.selectList(user))
+                .build();
     }
 
     @PostMapping(path="/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonReturnDTO<Integer>> createOne(
-            @Valid @RequestBody final UserModel userModel
+    public @ResponseBody JsonReturnDTO<Integer> insertItem(
+            @Valid @RequestBody final User user
     ) throws Exception {
-        return new ResponseEntity<>(JsonReturnDTO
+        return JsonReturnDTO
                 .<Integer>builder()
                 .successOrNot("Y")
                 .statusCode("OK")
-                .data(userService.insertOne(userModel))
-                .build(),
-                HttpStatus.OK
-        );
+                .data(userService.insertItem(user))
+                .build();
     }
 
     @GetMapping(path="/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonReturnDTO<UserModel>> selectOne(
+    public @ResponseBody JsonReturnDTO<User> selectItem(
             @NotNull @PathVariable(name = "id") final Integer id
     ) throws  Exception {
-        return new ResponseEntity<>(JsonReturnDTO
-                .<UserModel>builder()
+        return JsonReturnDTO
+                .<User>builder()
                 .successOrNot("Y")
                 .statusCode("OK")
-                .data(userService.selectOne(id))
-                .build(),
-                HttpStatus.OK
-        );
+                .data(userService.selectItem(id))
+                .build();
     }
 
     @PutMapping(path="/user/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonReturnDTO<Integer>> updateOne(
+    public @ResponseBody JsonReturnDTO<Integer> updateItem(
             @NotNull @PathVariable(name = "id") final Integer id,
-            @Valid @RequestBody final UserModel userModel
+            @Valid @RequestBody final User user
     ) throws Exception {
 
-        return new ResponseEntity<>(JsonReturnDTO
+        return JsonReturnDTO
                 .<Integer>builder()
                 .successOrNot("Y")
                 .statusCode("OK")
-                .data(userService.updateOne(id, userModel))
-                .build(),
-                HttpStatus.OK
-        );
+                .data(userService.updateItem(id, user))
+                .build();
     }
 
     @DeleteMapping(path="/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JsonReturnDTO<Integer>> deleteOne(
+    public @ResponseBody JsonReturnDTO<Integer> deleteItem(
             @NotNull @PathVariable(name = "id") final Integer id
     ) throws  Exception {
-        return new ResponseEntity<>(JsonReturnDTO
+        return JsonReturnDTO
                 .<Integer>builder()
                 .successOrNot("Y")
                 .statusCode("OK")
-                .data(userService.deleteOne(id))
-                .build(),
-                HttpStatus.OK
-        );
+                .data(userService.deleteItem(id))
+                .build();
     }
 }
