@@ -1,6 +1,6 @@
 package com.example.demo.user.repository;
 
-import com.example.demo.user.entity.User;
+import com.example.demo.user.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,18 +10,21 @@ import java.util.List;
 public interface UserMapper {
 
     @Transactional(readOnly = true)
-    Integer selectCount(User user) throws Exception;
+    Integer selectUserCount(final User user) throws Exception;
 
     @Transactional(readOnly = true)
-    List<User> selectList(User user) throws Exception;
+    List<User> selectUserList(final User user) throws Exception;
 
     @Transactional(readOnly = true)
-    User selectItem(Integer id) throws Exception;
+    User selectUserItemWithBlogList(final User user) throws Exception;
 
-    Integer insertItem(User user) throws Exception;
+    @Transactional(readOnly = true)
+    User selectUserItem(final Integer id) throws Exception;
 
-    Integer updateItem(User user) throws Exception;
+    Integer insertUserItem(final User user) throws Exception;
 
-    Integer deleteItem(Integer id) throws Exception;
+    Integer updateUserItem(final User user) throws Exception;
+
+    Integer deleteUserItem(final Integer id) throws Exception;
 
 }

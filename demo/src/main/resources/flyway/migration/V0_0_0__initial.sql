@@ -1,7 +1,0 @@
-CREATE TABLE user
-( id INT AUTO_INCREMENT COMMENT 'id'
-, name VARCHAR(50) NOT NULL COMMENT 'name'
-, PRIMARY KEY (id)
-) COMMENT 'user';
-
-INSERT INTO user(name) VALUES('Adam');

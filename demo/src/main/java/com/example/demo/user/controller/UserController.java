@@ -2,7 +2,7 @@ package com.example.demo.user.controller;
 
 import com.example.demo.common.model.JsonReturnDTO;
 import com.example.demo.common.model.PaginationDTO;
-import com.example.demo.user.entity.User;
+import com.example.demo.user.model.User;
 import com.example.demo.user.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -26,43 +26,57 @@ public class UserController {
     }
 
     @GetMapping(path="/user", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody JsonReturnDTO<PaginationDTO<User>> selectList(
+    public @ResponseBody JsonReturnDTO<PaginationDTO<User>> selectUserList(
             @Valid @ModelAttribute final User user
     ) throws Exception {
 
         return JsonReturnDTO.<PaginationDTO<User>>builder()
                 .successOrNot("Y")
                 .statusCode("OK")
-                .data(userService.selectList(user))
-                .build();
-    }
-
-    @PostMapping(path="/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody JsonReturnDTO<Integer> insertItem(
-            @Valid @RequestBody final User user
-    ) throws Exception {
-        return JsonReturnDTO
-                .<Integer>builder()
-                .successOrNot("Y")
-                .statusCode("OK")
-                .data(userService.insertItem(user))
+                .data(userService.selectUserList(user))
                 .build();
     }
 
     @GetMapping(path="/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody JsonReturnDTO<User> selectItem(
+    public @ResponseBody JsonReturnDTO<User> selectUserItem(
             @NotNull @PathVariable(name = "id") final Integer id
     ) throws  Exception {
         return JsonReturnDTO
                 .<User>builder()
                 .successOrNot("Y")
                 .statusCode("OK")
-                .data(userService.selectItem(id))
+                .data(userService.selectUserItem(id))
+                .build();
+    }
+
+    @GetMapping(path = "/user/{id}/blogs", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody JsonReturnDTO<User> selectUserItemWithBlogList(
+            @NotNull @PathVariable(name="id") final Integer id
+    ) throws Exception {
+
+        User searchUser = User.builder().id(id).build();
+
+        return JsonReturnDTO.<User>builder()
+                .successOrNot("Y")
+                .statusCode("OK")
+                .data(userService.selectUserItemWithBlogList(searchUser))
+                .build();
+    }
+
+    @PostMapping(path="/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody JsonReturnDTO<Integer> insertUserItem(
+            @Valid @RequestBody final User user
+    ) throws Exception {
+        return JsonReturnDTO
+                .<Integer>builder()
+                .successOrNot("Y")
+                .statusCode("OK")
+                .data(userService.insertUserItem(user))
                 .build();
     }
 
     @PutMapping(path="/user/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody JsonReturnDTO<Integer> updateItem(
+    public @ResponseBody JsonReturnDTO<Integer> updateUserItem(
             @NotNull @PathVariable(name = "id") final Integer id,
             @Valid @RequestBody final User user
     ) throws Exception {
@@ -71,19 +85,19 @@ public class UserController {
                 .<Integer>builder()
                 .successOrNot("Y")
                 .statusCode("OK")
-                .data(userService.updateItem(id, user))
+                .data(userService.updateUserItem(id, user))
                 .build();
     }
 
     @DeleteMapping(path="/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody JsonReturnDTO<Integer> deleteItem(
+    public @ResponseBody JsonReturnDTO<Integer> deleteUserItem(
             @NotNull @PathVariable(name = "id") final Integer id
     ) throws  Exception {
         return JsonReturnDTO
                 .<Integer>builder()
                 .successOrNot("Y")
                 .statusCode("OK")
-                .data(userService.deleteItem(id))
+                .data(userService.deleteUserItem(id))
                 .build();
     }
 }
