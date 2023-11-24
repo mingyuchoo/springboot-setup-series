@@ -1,0 +1,35 @@
+---
+server:
+  port: 8080
+  servlet:
+    encoding:
+      force-response: true
+
+spring:
+  output:
+    ansi:
+      enabled: DETECT
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    pool:
+      enabled: true
+
+
+# DBConfig.java
+sql:
+  schema: schema.sql
+  data: data.sql
+
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    root: ERROR
+    org.springframework.web: ERROR
+    com.mingyuchoo: DEBUG
+    org.hibernate:
+      SQL: DEBUG
+      type: TRACE
