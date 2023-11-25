@@ -1,5 +1,5 @@
 server:
-  port: 4000
+  port: ${SERVER_PORT}
   servlet:
     context-path: /
     encoding:
@@ -11,12 +11,12 @@ logging:
   pattern:
     console: "%d %-5level %logger : %msg%n"
   level:
-    root: error
-    org.springframework.web: error
-    com.example.demo: error
+    root: DEBUG
+    org.springframework.web: DEBUG
+    com.example.demo: DEBUG
     org.hibernate:
-      SQL: debug
-      type: error
+      SQL: DEBUG
+      type: DEBUG
 
 spring:
   output:
