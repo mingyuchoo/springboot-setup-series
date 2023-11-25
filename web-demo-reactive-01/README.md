@@ -1,9 +1,9 @@
-# springboot-web-reactive-demo-01
+# README
 
 ## Intro
 
 Spring 3에서 REST API 서비스를 JPA 와 MyBatis 로 MySQL 데이터베이스 를 이용한 사례입니다.
-Flyway를 이용해 데이터베이스 마이그레이션을 하도록 했습니다. 
+Flyway를 이용해 데이터베이스 마이그레이션을 하도록 했습니다.
 
 ## Tech Stack
 

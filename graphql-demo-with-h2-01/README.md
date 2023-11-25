@@ -1,4 +1,4 @@
-# graphql01
+# README
 
 ## Run Server
 

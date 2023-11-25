@@ -1,4 +1,4 @@
-# h2demo02
+# README
 
 ## How to run
 

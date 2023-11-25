@@ -1,4 +1,4 @@
-# swagger-demo-01
+# README
 
 ## How to run PostgreSQL
 

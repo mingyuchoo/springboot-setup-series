@@ -1,4 +1,4 @@
-# h2demo01
+# README
 
 ## How to Set up in `https://start.spring.io`
 
