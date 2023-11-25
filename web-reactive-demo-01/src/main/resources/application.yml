@@ -1,0 +1,54 @@
+---
+server:
+  port: ${SERVER_PORT}
+  servlet:
+    context-path: /
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    root: error
+    org.springframework.web: error
+    com.example.demo: error
+    org.hibernate:
+      SQL: debug
+      type: error
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    minimum-idle: 10
+    maximum-pool-size: 10
+    validation-query: SELECT 1 FROM DUAL
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: test
+        format_sql: true
+        show_sql: true
+        use_sql_comments: true
+        type: error
+  flyway:
+    locations: classpath:flyway/migration
+    defaultSchema: test
+    enabled: true
+    baseline-on-migration: true
+
+mybatis:
+  type-aliases-package: com.example.demo.user.repository
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

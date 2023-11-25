@@ -1,4 +1,4 @@
-package com.mingyuchoo.reactive;
+package com.mingyuchoo.reactive.config;
 
 import io.r2dbc.spi.ConnectionFactories;
 import io.r2dbc.spi.ConnectionFactory;
