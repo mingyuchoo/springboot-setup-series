@@ -1,9 +1,9 @@
 package com.mingyuchoo.graphql;
 
-import com.mingyuchoo.graphql.datafetchers.AuthorDataFetcher;
-import com.mingyuchoo.graphql.datafetchers.BookDataFetcher;
-import com.mingyuchoo.graphql.datafetchers.BookStoreDataFetcher;
-import com.mingyuchoo.graphql.datafetchers.CityDataFetcher;
+import com.mingyuchoo.graphql.resolver.AuthorResolver;
+import com.mingyuchoo.graphql.resolver.BookResolver;
+import com.mingyuchoo.graphql.resolver.BookStoreResolver;
+import com.mingyuchoo.graphql.resolver.CityResolver;
 import graphql.GraphQL;
 import graphql.scalars.ExtendedScalars;
 import graphql.schema.GraphQLSchema;
@@ -29,13 +29,17 @@ public class GraphQLProvider {
 
     private GraphQL graphQL;
 
-    @Autowired AuthorDataFetcher authorDataFetcher;
+    @Autowired
+    AuthorResolver authorResolver;
 
-    @Autowired BookDataFetcher bookDataFetcher;
+    @Autowired
+    BookResolver bookResolver;
 
-    @Autowired BookStoreDataFetcher bookStoreDataFetcher;
+    @Autowired
+    BookStoreResolver bookStoreResolver;
 
-    @Autowired CityDataFetcher cityDataFetcher;
+    @Autowired
+    CityResolver cityResolver;
 
     @Value("classpath:schema/**/*.graphql")
     private Resource[] schemaResources;
@@ -88,38 +92,38 @@ public class GraphQLProvider {
                 .scalar(ExtendedScalars.DateTime)
                 .type(
                         TypeRuntimeWiring.newTypeWiring("Query")
-                                .dataFetcher("authorCount", authorDataFetcher.authorCount())
-                                .dataFetcher("authors", authorDataFetcher.authors())
-                                .dataFetcher("author", authorDataFetcher.author())
-                                .dataFetcher("bookCount", bookDataFetcher.bookCount())
-                                .dataFetcher("books", bookDataFetcher.books())
-                                .dataFetcher("book", bookDataFetcher.book())
+                                .dataFetcher("authorCount", authorResolver.authorCount())
+                                .dataFetcher("authors", authorResolver.authors())
+                                .dataFetcher("author", authorResolver.author())
+                                .dataFetcher("bookCount", bookResolver.bookCount())
+                                .dataFetcher("books", bookResolver.books())
+                                .dataFetcher("book", bookResolver.book())
                                 .dataFetcher(
-                                        "bookStoreCount", bookStoreDataFetcher.bookStoreCount())
-                                .dataFetcher("bookStores", bookStoreDataFetcher.bookStores())
-                                .dataFetcher("bookStore", bookStoreDataFetcher.bookStore())
-                                .dataFetcher("cityCount", cityDataFetcher.cityCount())
-                                .dataFetcher("cities", cityDataFetcher.cities())
-                                .dataFetcher("city", cityDataFetcher.city()))
+                                        "bookStoreCount", bookStoreResolver.bookStoreCount())
+                                .dataFetcher("bookStores", bookStoreResolver.bookStores())
+                                .dataFetcher("bookStore", bookStoreResolver.bookStore())
+                                .dataFetcher("cityCount", cityResolver.cityCount())
+                                .dataFetcher("cities", cityResolver.cities())
+                                .dataFetcher("city", cityResolver.city()))
                 .type(
                         TypeRuntimeWiring.newTypeWiring("Mutation")
-                                .dataFetcher("addAuthor", authorDataFetcher.addAuthor())
-                                .dataFetcher("changeAuthor", authorDataFetcher.changeAuthor())
-                                .dataFetcher("removeAuthor", authorDataFetcher.removeAuthor())
-                                .dataFetcher("addBook", bookDataFetcher.addBook())
+                                .dataFetcher("addAuthor", authorResolver.addAuthor())
+                                .dataFetcher("changeAuthor", authorResolver.changeAuthor())
+                                .dataFetcher("removeAuthor", authorResolver.removeAuthor())
+                                .dataFetcher("addBook", bookResolver.addBook())
                                 .dataFetcher(
                                         "addBookWithAuthorIdAndBookStoreId",
-                                        bookDataFetcher.addBookWithAuthorIdAndBookStoreId())
-                                .dataFetcher("changeBook", bookDataFetcher.changeBook())
-                                .dataFetcher("removeBook", bookDataFetcher.removeBook())
-                                .dataFetcher("addBookStore", bookStoreDataFetcher.addBookStore())
+                                        bookResolver.addBookWithAuthorIdAndBookStoreId())
+                                .dataFetcher("changeBook", bookResolver.changeBook())
+                                .dataFetcher("removeBook", bookResolver.removeBook())
+                                .dataFetcher("addBookStore", bookStoreResolver.addBookStore())
                                 .dataFetcher(
-                                        "changeBookStore", bookStoreDataFetcher.changeBookStore())
+                                        "changeBookStore", bookStoreResolver.changeBookStore())
                                 .dataFetcher(
-                                        "removeBookStore", bookStoreDataFetcher.removeBookStore())
-                                .dataFetcher("addCity", cityDataFetcher.addCity())
-                                .dataFetcher("changeCity", cityDataFetcher.changeCity())
-                                .dataFetcher("removeCity", cityDataFetcher.removeCity()))
+                                        "removeBookStore", bookStoreResolver.removeBookStore())
+                                .dataFetcher("addCity", cityResolver.addCity())
+                                .dataFetcher("changeCity", cityResolver.changeCity())
+                                .dataFetcher("removeCity", cityResolver.removeCity()))
                 .build();
     }
 }

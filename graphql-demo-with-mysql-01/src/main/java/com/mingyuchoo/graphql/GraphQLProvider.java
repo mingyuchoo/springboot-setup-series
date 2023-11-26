@@ -1,9 +1,9 @@
 package com.mingyuchoo.graphql;
 
-import com.mingyuchoo.graphql.datafetchers.AuthorDataFetcher;
-import com.mingyuchoo.graphql.datafetchers.BookDataFetcher;
-import com.mingyuchoo.graphql.datafetchers.BookStoreDataFetcher;
-import com.mingyuchoo.graphql.datafetchers.CityDataFetcher;
+import com.mingyuchoo.graphql.resolver.AuthorDataFetcher;
+import com.mingyuchoo.graphql.resolver.BookDataFetcher;
+import com.mingyuchoo.graphql.resolver.BookStoreDataFetcher;
+import com.mingyuchoo.graphql.resolver.CityDataFetcher;
 import graphql.GraphQL;
 import graphql.scalars.ExtendedScalars;
 import graphql.schema.GraphQLSchema;
