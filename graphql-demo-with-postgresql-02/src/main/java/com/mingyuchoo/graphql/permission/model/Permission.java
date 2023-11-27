@@ -1,4 +1,4 @@
-package com.mingyuchoo.graphql.author.model;
+package com.mingyuchoo.graphql.permission.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,12 +12,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Author {
+public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
-
-    private Integer age;
 }
