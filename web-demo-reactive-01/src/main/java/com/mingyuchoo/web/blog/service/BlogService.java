@@ -4,6 +4,6 @@ import com.mingyuchoo.web.blog.model.Blog;
 
 public interface BlogService {
 
-    public Blog selectBlogItem(Blog blog) throws Exception;
+    Blog selectBlogItem(Blog blog) throws Exception;
 
 }

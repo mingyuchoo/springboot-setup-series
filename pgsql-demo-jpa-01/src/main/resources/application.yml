@@ -20,8 +20,14 @@ logging:
 spring:
   output:
     ansi:
-      enabled: DETECT
+      enabled: always
+  security:
+    user:
+      name: admin
+      password: admin
   datasource:
+    hikari:
+      maximum-pool-size: 10
     driver-class-name: org.postgresql.Driver
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}

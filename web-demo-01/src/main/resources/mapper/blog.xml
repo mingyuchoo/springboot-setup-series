@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mingyuchoo.web.blog.repository.BlogMapper">
+<mapper namespace="com.mingyuchoo.web.biz.blog.repository.BlogMapper">
 
-    <select id="selectBlogItem" parameterType="com.mingyuchoo.web.blog.model.Blog" resultMap="blogResult">
+    <select id="selectBlogItem" parameterType="com.mingyuchoo.web.biz.blog.model.Blog" resultMap="blogResult">
         SELECT blog.id       AS blog_id
              , blog.title    AS blog_title
              , user.id       AS user_id
@@ -16,7 +16,7 @@
              WHERE 1 = 1
              AND blog.id = #{id}
     </select>
-    <resultMap id="blogResult" type="com.mingyuchoo.web.blog.model.Blog">
+    <resultMap id="blogResult" type="com.mingyuchoo.web.biz.blog.model.Blog">
         <id column="blog_id" property="id" />
         <result column="blog_title" property="title" />
         <association property="user">

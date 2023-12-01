@@ -1,12 +1,12 @@
 package com.mingyuchoo.pgsql;
 
-import com.mingyuchoo.pgsql.entity.Cart;
-import com.mingyuchoo.pgsql.entity.Item;
-import com.mingyuchoo.pgsql.entity.Person;
-import com.mingyuchoo.pgsql.repository.AddressRepository;
-import com.mingyuchoo.pgsql.repository.CartRepository;
-import com.mingyuchoo.pgsql.repository.ItemRepository;
-import com.mingyuchoo.pgsql.repository.PersonRepository;
+import com.mingyuchoo.pgsql.biz.cart.model.Cart;
+import com.mingyuchoo.pgsql.biz.item.model.Item;
+import com.mingyuchoo.pgsql.biz.person.model.Person;
+import com.mingyuchoo.pgsql.biz.address.repository.AddressRepository;
+import com.mingyuchoo.pgsql.biz.cart.repository.CartRepository;
+import com.mingyuchoo.pgsql.biz.item.repository.ItemRepository;
+import com.mingyuchoo.pgsql.biz.person.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

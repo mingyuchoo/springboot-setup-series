@@ -23,14 +23,15 @@ spring:
   output:
     ansi:
       enabled: always
+  security:
+    user:
+      name: admin
+      password: admin
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
-    minimum-idle: 10
-    maximum-pool-size: 10
-    validation-query: SELECT 1 FROM DUAL
   jpa:
     generate-ddl: true
     show-sql: true

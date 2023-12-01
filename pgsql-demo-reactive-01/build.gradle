@@ -24,6 +24,10 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // security needs jakarta.* in spring-boot-starter-web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     runtimeOnly 'org.postgresql:r2dbc-postgresql'
 

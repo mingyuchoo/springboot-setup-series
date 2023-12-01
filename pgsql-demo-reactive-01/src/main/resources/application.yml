@@ -23,6 +23,10 @@ spring:
   output:
     ansi:
       enabled: DETECT
+  security:
+    user:
+      name: admin
+      password: admin
   r2dbc:
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}
