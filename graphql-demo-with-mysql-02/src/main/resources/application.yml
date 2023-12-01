@@ -1,0 +1,48 @@
+---
+server:
+  port: ${SERVER_PORT}
+  servlet:
+    context-path: /
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    root: ERROR
+    org.springframework.web: DEBUG
+    com.mingyuchoo.graphql: DEBUG
+    org.hibernate:
+      SQL: DEBUG
+      type: DEBUG
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    generate-ddl: true
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        default_schema: public
+        format_sql: true
+        show_sql: true
+        use_sql_comments: true
+        type: trace
+  graphql:
+    graphiql:
+      enabled: true
