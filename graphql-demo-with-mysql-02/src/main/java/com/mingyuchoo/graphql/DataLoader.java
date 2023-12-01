@@ -1,4 +1,4 @@
-package com.mingyuchoo.graphql.setting.data;
+package com.mingyuchoo.graphql;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

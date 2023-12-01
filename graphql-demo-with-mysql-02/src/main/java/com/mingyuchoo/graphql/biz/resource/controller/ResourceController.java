@@ -2,7 +2,7 @@ package com.mingyuchoo.graphql.biz.resource.controller;
 
 import com.mingyuchoo.graphql.biz.resource.model.Resource;
 import com.mingyuchoo.graphql.biz.resource.repository.ResourceRepository;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -14,12 +14,12 @@ public class ResourceController {
         this.resourceRepository = resourceRepository;
     }
 
-    @SchemaMapping(value = "findAllResources", typeName = "Query")
+    @QueryMapping
     public Iterable<Resource> findAllResources () {
         return resourceRepository.findAll();
     }
 
-    @SchemaMapping(value = "countResources", typeName = "Query")
+    @QueryMapping
     public Long countResources() {
         return resourceRepository.count();
     }

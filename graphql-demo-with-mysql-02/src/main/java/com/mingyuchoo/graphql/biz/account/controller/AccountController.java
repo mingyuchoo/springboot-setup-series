@@ -2,8 +2,10 @@ package com.mingyuchoo.graphql.biz.account.controller;
 
 import com.mingyuchoo.graphql.biz.account.model.Account;
 import com.mingyuchoo.graphql.biz.account.repository.AccountRepository;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 @Controller
 public class AccountController {
@@ -14,12 +16,12 @@ public class AccountController {
         this.accountRepository = accountRepository;
     }
 
-    @SchemaMapping(value = "findAllAccounts", typeName = "Query")
-    public Iterable<Account> findAllAccounts () {
+    @QueryMapping
+    public List<Account> findAllAccounts () {
         return accountRepository.findAll();
     }
 
-    @SchemaMapping(value = "countAccounts", typeName = "Query")
+    @QueryMapping
     public Long countAccounts() {
         return accountRepository.count();
     }
