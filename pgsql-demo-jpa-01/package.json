@@ -1,0 +1,23 @@
+{
+    "name": "pgsql-demo-reactive-01",
+    "version": "1.0.0",
+    "description": "You can run docker containers for postgresql",
+    "main": "docker-compose.yml",
+    "scripts": {
+        "docker:up": "docker compose --file docker-compose.yml up --build --detach",
+        "docker:down": "docker compose --file docker-compose.yml down --volumes --remove-orphans",
+        "docker:exec": "docker exec -it postgresql-db /bin/sh",
+        "docker:exec:root": "docker exec -u root -it postgresql-db /bin/sh",
+        "podman:up": "podman compose --file docker-compose.yml up --build --detach",
+        "podman:down": "podman compose --file docker-compose.yml down --volumes --remove-orphans",
+        "podman:exec": "podman exec -it postgresql-db /bin/sh",
+        "podman:exec:root": "podman exec -u root -it postgresql-db /bin/sh",
+        "dev": "./gradlew clean bootRun"
+    },
+    "keywords": [
+        "docker",
+        "postgresql"
+    ],
+    "author": "mingyuchoo@gmail.com",
+    "license": "MIT License"
+}
