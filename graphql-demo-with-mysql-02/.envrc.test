@@ -1,4 +1,0 @@
-export SERVER_PORT=4000
-export DATABASE_URL="jdbc:mysql://localhost:3306/test"
-export DATABASE_USERNAME="test"
-export DATABASE_PASSWORD="test"

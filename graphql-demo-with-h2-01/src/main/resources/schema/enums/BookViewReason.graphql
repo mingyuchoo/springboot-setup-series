@@ -1,5 +1,0 @@
-enum BookViewReason {
-    RENT
-    BUY
-    CURIOSITY
-}

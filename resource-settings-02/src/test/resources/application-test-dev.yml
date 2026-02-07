@@ -1,9 +1,0 @@
-book:
-  consumer:
-    name: store-web-service
-  provider:
-    name: book-service
-    prefix: /book
-    host: localhost
-    port: 8080
-    

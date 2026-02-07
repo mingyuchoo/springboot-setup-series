@@ -1,5 +1,0 @@
-type City {
-    id: ID!
-    name: String
-    population: Int
-}

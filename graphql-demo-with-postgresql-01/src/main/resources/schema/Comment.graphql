@@ -1,7 +1,0 @@
-type Comment  {
-    id: ID!
-    comment: String!
-    parent: Comment!
-    createdAt: DateTime
-    updatedAt: DateTime
-}

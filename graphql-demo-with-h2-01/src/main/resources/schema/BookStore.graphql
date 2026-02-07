@@ -1,6 +1,0 @@
-type BookStore {
-    id: ID!
-    storeName: String
-    storeLocation: String
-    books: [Book]
-}
