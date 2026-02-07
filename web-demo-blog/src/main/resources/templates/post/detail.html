@@ -1,0 +1,73 @@
+<!-- [REQ-F001] 포스트 상세 페이지 (2026-02-06) -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${post.title}">포스트 상세</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <article class="post-detail">
+            <h2 th:text="${post.title}"></h2>
+            <div class="post-meta">
+                <span th:text="${post.authorUsername}"></span>
+                <span>&middot;</span>
+                <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+                <span th:if="${post.updatedAt != post.createdAt}">
+                    (수정: <span th:text="${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}"></span>)
+                </span>
+            </div>
+
+            <div class="post-content" th:utext="${#strings.replace(#strings.escapeXml(post.content), '&#10;', '&lt;br&gt;')}"></div>
+
+            <!-- 본인 포스트일 때만 수정/삭제 버튼 표시 -->
+            <div th:if="${post.authorUsername == currentUsername}" class="post-actions">
+                <a th:href="@{/posts/{id}/edit(id=${post.id})}" class="btn btn-sm">수정</a>
+                <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post" class="inline"
+                      onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                    <button type="submit" class="btn btn-sm btn-danger">삭제</button>
+                </form>
+            </div>
+        </article>
+
+        <!-- 댓글 섹션 -->
+        <section class="comments-section">
+            <h3>댓글 (<span th:text="${#lists.size(comments)}"></span>)</h3>
+
+            <div th:if="${#lists.isEmpty(comments)}" class="empty-state">
+                <p>아직 댓글이 없습니다. 첫 번째 댓글을 작성해보세요!</p>
+            </div>
+
+            <div class="comment-list">
+                <div th:each="comment : ${comments}" class="comment-card">
+                    <div class="comment-meta">
+                        <strong th:text="${comment.authorUsername}"></strong>
+                        <span th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+                    </div>
+                    <p th:text="${comment.content}"></p>
+                    <form th:if="${comment.authorUsername == currentUsername}"
+                          th:action="@{/posts/{postId}/comments/{commentId}/delete(postId=${post.id}, commentId=${comment.id})}"
+                          method="post" class="inline"
+                          onsubmit="return confirm('댓글을 삭제하시겠습니까?');">
+                        <button type="submit" class="btn btn-xs btn-danger">삭제</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 댓글 작성 폼 -->
+            <form th:action="@{/posts/{id}/comments(id=${post.id})}"
+                  th:object="${commentRequest}" method="post" class="comment-form">
+                <div class="form-group">
+                    <label for="content">댓글 작성</label>
+                    <textarea id="content" th:field="*{content}" rows="3"
+                              placeholder="댓글을 입력해주세요." required></textarea>
+                </div>
+                <button type="submit" class="btn">댓글 등록</button>
+            </form>
+        </section>
+
+        <a th:href="@{/posts}" class="btn btn-outline">&larr; 목록으로</a>
+    </div>
+</body>
+</html>

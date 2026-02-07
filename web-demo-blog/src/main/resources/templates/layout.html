@@ -1,0 +1,40 @@
+<!-- [REQ-F001] 공통 레이아웃 (2026-02-06) -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title layout:title-pattern="$CONTENT_TITLE - Blog">Blog</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a th:href="@{/posts}" class="brand">Blog</a>
+            <div class="nav-links">
+                <span sec:authorize="isAuthenticated()" class="nav-user">
+                    <span sec:authentication="name"></span>님
+                </span>
+                <a sec:authorize="isAuthenticated()" th:href="@{/posts/new}" class="btn btn-sm">새 글 작성</a>
+                <form sec:authorize="isAuthenticated()" th:action="@{/auth/logout}" method="post" class="inline">
+                    <button type="submit" class="btn btn-sm btn-outline">로그아웃</button>
+                </form>
+                <a sec:authorize="!isAuthenticated()" th:href="@{/auth/login}" class="btn btn-sm">로그인</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+        <div layout:fragment="content"></div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Blog Service</p>
+        </div>
+    </footer>
+</body>
+</html>

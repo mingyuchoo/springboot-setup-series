@@ -1,0 +1,2 @@
+// [REQ-F001] 블로그 서비스 프로젝트 설정 (2026-02-06)
+rootProject.name = 'blog'

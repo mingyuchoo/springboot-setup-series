@@ -1,0 +1,40 @@
+<!-- [REQ-F001] 로그인 페이지 (2026-02-06) -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>로그인</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="auth-container">
+            <h2>로그인</h2>
+
+            <div th:if="${param.error}" class="alert alert-error">
+                사용자명 또는 비밀번호가 올바르지 않습니다.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                로그아웃되었습니다.
+            </div>
+            <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+
+            <form th:action="@{/auth/login}" method="post">
+                <div class="form-group">
+                    <label for="username">사용자명</label>
+                    <input type="text" id="username" name="username" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-full">로그인</button>
+            </form>
+
+            <p class="auth-link">
+                계정이 없으신가요? <a th:href="@{/auth/register}">회원가입</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

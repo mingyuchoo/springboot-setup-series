@@ -1,0 +1,50 @@
+<!-- [REQ-F001] 포스트 목록 페이지 (2026-02-06) -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>포스트 목록</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h2>포스트 목록</h2>
+
+        <div th:if="${posts.isEmpty()}" class="empty-state">
+            <p>아직 작성된 포스트가 없습니다.</p>
+            <a th:href="@{/posts/new}" class="btn">첫 번째 포스트 작성하기</a>
+        </div>
+
+        <div th:unless="${posts.isEmpty()}">
+            <div class="post-list">
+                <article th:each="post : ${posts.content}" class="post-card">
+                    <h3>
+                        <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
+                    </h3>
+                    <div class="post-meta">
+                        <span th:text="${post.authorUsername}"></span>
+                        <span>&middot;</span>
+                        <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+                        <span>&middot;</span>
+                        <span>댓글 <span th:text="${post.commentCount}"></span>개</span>
+                    </div>
+                    <p class="post-preview" th:text="${#strings.abbreviate(post.content, 150)}"></p>
+                </article>
+            </div>
+
+            <!-- 페이징 -->
+            <nav th:if="${posts.totalPages > 1}" class="pagination">
+                <a th:if="${!posts.first}"
+                   th:href="@{/posts(page=${posts.number - 1})}"
+                   class="btn btn-sm">&laquo; 이전</a>
+                <span class="page-info">
+                    <span th:text="${posts.number + 1}"></span> / <span th:text="${posts.totalPages}"></span>
+                </span>
+                <a th:if="${!posts.last}"
+                   th:href="@{/posts(page=${posts.number + 1})}"
+                   class="btn btn-sm">다음 &raquo;</a>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+// [REQ-F001] 블로그 서비스 빌드 설정 (2026-02-06)
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.2'
+    id 'io.spring.dependency-management' version '1.1.7'
+    // [REQ-N004] 테스트 커버리지 측정을 위한 JaCoCo 플러그인 (2026-02-07)
+    id 'jacoco'
+}
+
+group = 'com.demo'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
+    runtimeOnly 'com.h2database:h2'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // [REQ-N003] 슬라이스 테스트를 위한 기술별 테스트 스타터 (2026-02-07)
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    // [REQ-N009] Playwright E2E 테스트 의존성 (2026-02-07)
+    testImplementation 'com.microsoft.playwright:playwright:1.49.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform {
+        // [REQ-N009] E2E 테스트는 별도 태스크로 분리 (2026-02-07)
+        excludeTags 'e2e'
+    }
+    // [REQ-N004] 테스트 실행 후 JaCoCo 리포트 자동 생성 (2026-02-07)
+    finalizedBy jacocoTestReport
+}
+
+// [REQ-N009] Playwright E2E 테스트 전용 태스크 (2026-02-07)
+tasks.register('e2eTest', Test) {
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform {
+        includeTags 'e2e'
+    }
+    shouldRunAfter tasks.named('test')
+}
+
+// [REQ-N004] JaCoCo 리포트 설정 (2026-02-07)
+jacocoTestReport {
+    dependsOn test
+    reports {
+        html.required = true
+        xml.required = true
+        csv.required = false
+    }
+    finalizedBy jacocoTestCoverageVerification
+}
+
+// [REQ-N004] 최소 커버리지 기준: 라인 커버리지 80% (2026-02-07)
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+        }
+    }
+}
